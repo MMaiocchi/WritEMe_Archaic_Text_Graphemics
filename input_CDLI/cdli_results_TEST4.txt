@@ -1,0 +1,1141 @@
+﻿Primary publication: MSVO 4, 46
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): van den Meer, RA 033, 188, no. 3
+Collection: Katholieke Universiteit, Nijmegen, Holland
+Museum no.: KU 040
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001pzpgf
+Composite no.: 
+Seal no.: 
+CDLI no.: P005448
+Transliteration:
+&P005448 = MSVO 4, 46
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1. 1(N34)# 1(N45)# 5(N14)#? , SZE~a# 
+2. 1(N46)# 9(N19)# 2(N04)# , 
+3. , GI# 
+@column 2 
+1. , DUB~a# APIN~a AN# |SZU2.EN~a|# SZITA~a1# AN MAR~a PA~a 
+@reverse 
+@column 1 
+1. 1(N36)# 1(N34)# 1(N19)# 2(N14)# 2(N01)# , SZE~a# DUB~a# GI# 
+@column 2 
+1. , APIN~a AN# MAR~a# [...] 
+ 
+
+
+Primary publication: MSVO 4, 47
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): van den Meer, RA 033, 188, no. 5
+Collection: Katholieke Universiteit, Nijmegen, Holland
+Museum no.: KU 033
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001pzrbb
+Composite no.: 
+Seal no.: 
+CDLI no.: P005449
+Transliteration:
+&P005449 = MSVO 4, 47
+#atf: lang qpc 
+@tablet 
+@obverse 
+1. 2(N18)# 5(N03)# 4(N40) , BA# PAP~a 
+$ blank space 
+@reverse 
+$ blank space 
+# with two clay core removals
+ 
+
+Primary publication: MSVO 4, 48
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): van den Meer, RA 033, 188, no. 4
+Collection: Katholieke Universiteit, Nijmegen, Holland
+Museum no.: KU 046
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001pzrcv
+Composite no.: 
+Seal no.: 
+CDLI no.: P005450
+Transliteration:
+&P005450 = MSVO 4, 48
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1. 2(N34)# 7(N14)# 1(N01)# , APIN~a# PA~a# AN MAR~a 
+2. 1(N34) 1(N45) 2(N14) 3(N01) , PA~a#? SZUBUR 
+3. 1(N46) 1(N19) 3(N04) , PA~a SZUBUR 
+4. 1(N34) , E2~a DU SZE~a 
+@column 2 
+1. 1(N45)# 5(N14)# , EN~a PAP~a 
+2.a. 1(N34) 7(N14) 5(N01) , BU~a? RAD~a? 
+2.b. 1(N46) 4(N19) 4(N04) , 
+3. 2(N45) 2(N14) 4(N01) , SZE~a MUSZEN KASZ~c 
+@reverse 
+@column 1 
+1. 7(N34) 5(N14) 1(N01) , SZE~a BA 
+2. 2(N46) 6(N19) 1(N04) , 
+@column 2 
+1. 4(N34) 4(N36) 1(N14) 2(N01) , SZE~a GIBIL BA AN MAR~a EN~a# A# SZAM2# 
+ 
+
+
+Primary publication: MSVO 4, 49
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): van den Meer, RA 033, 188, no. 9
+Collection: Katholieke Universiteit, Nijmegen, Holland
+Museum no.: KU 044
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001pzrdc
+Composite no.: 
+Seal no.: 
+CDLI no.: P005451
+Transliteration:
+&P005451 = MSVO 4, 49
+#atf: lang qpc 
+@tablet 
+@obverse 
+1.a. 1(N47)? 8(N20)# , SZE~a# BA# EN~a A SZAM2 
+1.b. 2(N20) , SZE~a GI# 
+2. , PAP~a BU~a NAM2# 
+@reverse 
+$ blank space 
+# with clay core removal
+ 
+
+Primary publication: MSVO 4, 50
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): van den Meer, RA 033, 188, no. 13
+Collection: Katholieke Universiteit, Nijmegen, Holland
+Museum no.: KUN —
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001pzrfw
+Composite no.: 
+Seal no.: 
+CDLI no.: P005452
+Transliteration:
+&P005452 = MSVO 4, 50
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1. 1(N45) 4(N14) 1(N01) 2(N39~a) 1(N24) , [...] 
+2. [...] , [...] X 
+3. [...] , [...] 
+4. , BA X NAR? 
+@column 2 
+$ blank space 
+@reverse 
+$ blank space 
+
+
+Primary publication: MSVO 4, 51
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): van den Meer, RA 033, 188, no. 1
+Collection: Katholieke Universiteit, Nijmegen, Holland
+Museum no.: KU 034
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001pzrgd
+Composite no.: 
+Seal no.: Sx
+CDLI no.: P005453
+Transliteration:
+&P005453 = MSVO 4, 51
+#atf: lang qpc 
+@tablet 
+@obverse 
+1. 1(N34) 1(N45) 9(N14) 5(N01) , SZE~a 
+2. 1(N46) 7(N19) , 
+3. , AN PA~a MAR~a SZUBUR 
+@reverse 
+1. 1(N34) 1(N36) 6(N14)# 5(N01)# , SZE~a 
+ 
+
+
+Primary publication: MSVO 4, 52
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): van den Meer, RA 033, 188, no. 16
+Collection: Katholieke Universiteit, Nijmegen, Holland
+Museum no.: KU 041
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001pzrhx
+Composite no.: 
+Seal no.: 
+CDLI no.: P005454
+Transliteration:
+&P005454 = MSVO 4, 52
+#atf: lang qpc 
+@tablet 
+@obverse 
+1.a1. 1(N14) , UNUG~a ALAN~e
+
+ 
+1.a2. 8(N01) , AN MAR~a PA~a ALAN~e 
+1.b. , 
+2.a. 1(N19) , 
+2.b. 1(N01) , ZATU710 BA 
+2.c. 2(N14) , GAR# BA# 
+2.d. 2(N04) 4(N41) , [...] 
+3.a. 1(N14) 1(N01) 3(N39~a) , SZE~a 
+3.b. 1(N01) , ZATU710 RA? 
+3.c. 2(N14) , GAR [...] 
+3.d. 1(N14) , SZE~a BA 
+4. , GI#? 1(N02) 
+@reverse 
+$ blank space 
+# with two clay core removals
+ 
+
+
+Primary publication: MSVO 4, 53
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): van den Meer, RA 033, 188, no. 8
+Collection: Katholieke Universiteit, Nijmegen, Holland
+Museum no.: KU 031
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001pzrjf
+Composite no.: 
+Seal no.: 
+CDLI no.: P005455
+Transliteration:
+&P005455 = MSVO 4, 53
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1. 1(N14) , NE~a MUSZ3~a 1(N57) 
+2. 3(N14) 1(N01) , NAR 
+$ blank space 
+@column 2 
+1. , AN MAR~a SZE~a 
+@reverse 
+$ blank space 
+# with two clay core removals
+ 
+
+Primary publication: MSVO 4, 54
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): van den Meer, RA 033, 188, no. 14
+Collection: Katholieke Universiteit, Nijmegen, Holland
+Museum no.: KU 043
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001pzrkz
+Composite no.: 
+Seal no.: 
+CDLI no.: P005456
+Transliteration:
+&P005456 = MSVO 4, 54
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1. 1(N14)# 1(N01) , SZE~a# RU 
+2. [...] 3(N01)# , [...] RU 
+3. 1(N14)# 3(N01)# , SZE~a# RU 
+4. 2(N14)# , SZUBUR# ADAB 
+5. 4(N14)# , ZATU710# X 
+6. 5(N14)#? , X [...] 
+7. [...] 1(N01)#? , [...] 
+@column 2 
+1. 4(N01) , A TAK4~a#? 
+2. 4(N01) , UMUN2 DU# 
+3. 1(N01) , URI3~a AN#? 
+4. 3(N04) , U4 NIM~b1 
+5. 4(N14) , AN MAR~a PA~a 
+6. 1(N14) , NAB DI 
+7. , [...] 
+@reverse 
+@column 1 
+1. 1(N45)# 5(N14)# 3(N01)# , SZE~a# EN~a APIN~a# 
+2. 6(N14)# 3(N01)# , E2~b#? 
+3. 3(N04)# , 
+@column 2 
+1. 2(N45)# 3(N14)#? 5(N01)# 2(N39~a)# 1(N24) , [...] 
+ 
+
+
+Primary publication: MSVO 4, 55
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): van den Meer, RA 033, 188, no. 12
+Collection: Katholieke Universiteit, Nijmegen, Holland
+Museum no.: KU 037
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001qq7dd
+Composite no.: 
+Seal no.: 
+CDLI no.: P005457
+Transliteration:
+&P005457 = MSVO 4, 55
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1. [...] , [...] 
+2.a. 1(N01) , AN GAR 
+2.b1. , X [...] 
+2.b2. , [...] BU~a#? 
+2.b3. , X E2~a#? 
+2.b4. , MUSZEN#? 1(N57)#? 
+3. 1(N08) , AN MAR~a AMA~a 
+4. 1(N08) , RAD~a AMA~a 
+5. 1(N01) 1(N08) , SAL |1(N57).SZUBUR| 
+6. [...] , SUKKAL 
+@column 2 
+1. [...] , [...] 
+2. 1(N08)# , BAHAR2~c# 
+3. , |ZATU659x1(N01)| MU 
+4.a. 1(N01) , 4(N57) GAR 
+4.b1. , MU 
+4.b2. , E2~b? 
+4.b3. , SUKKAL 
+4.b4. , U2~b A 
+5. 1(N08) , |1(N57).SZUBUR| KUR~a# 
+@column 3 
+1. , [...] MAR~a AN GAR 
+@reverse 
+@column 1 
+1. 1(N14) 1(N01) 1(N08) , |ZATU659x1(N01)| SZU ZATU659# 
+2. 1(N08)# , |ZATU659x1(N01)|# EN~a# ZATU659# 
+@column 2 
+1. 1(N14) 2(N01)# , GAR MAR~a AN# |U4x1(N57)| 
+ 
+
+
+Primary publication: MSVO 4, 56
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): van den Meer, RA 033, 188, no. 15
+Collection: Katholieke Universiteit, Nijmegen, Holland
+Museum no.: KU 035
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001qq7fx
+Composite no.: 
+Seal no.: 
+CDLI no.: P005458
+Transliteration:
+&P005458 = MSVO 4, 56
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1.a. 2(N51) , |LAGAB~axU4| KISAL~b1 
+1.b. 1(N20) , 
+2.a. 1(N51) , GAR |BU~axA| AL 
+2.b. 4(N05) , 
+3.a. 1(N14) , DUG~a AL 
+3.b. 3(N05) , 
+4.a. 2(N01) , ZATU710 AN |SZU2.EN~a| SZITA~a1 
+4.b. , 
+5. 4(N01) , SIG7 EN~a# A# 
+@column 2 
+1.a. 1(N34) 3(N14)# , GAR 
+1.b. 3(N05) , 
+2.a. 1(N51) 1(N34) 3(N14) , 
+2.b. 1(N20)# 1(N05)# , 
+3.a. 1(N14) , KI? UKKIN~b NAGA~a 
+3.b. 4(N05)# 3(N42~a)# , 
+4.a. 1(N14)# , ZATU710# |SZU2.EN~a| X 
+4.b. 2(N05)# , 
+5. , BAR# [...] 
+@reverse 
+$ blank space 
+# with two clay core removals 
+
+
+Primary publication: MSVO 4, 57
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): van den Meer, RA 033, 188, no. 17
+Collection: Katholieke Universiteit, Nijmegen, Holland
+Museum no.: KU 039
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001qq7gf
+Composite no.: 
+Seal no.: 
+CDLI no.: P005459
+Transliteration:
+&P005459 = MSVO 4, 57
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1. 4(N50)# , EN~a# 
+2. 4(N14)# [...] , [...] 
+3.a. 1(N50)# 2(N14)# [...] , [...] 
+3.b. 1(N14)# [...] , X [...] 
+4. 1(N50)# 2(N14)# [...] , SZE~a#? [...] 
+5.a. 3(N01)# , URU~a1# 
+5.b1. , KALAM~b UR2 
+5.c1. , MAR~a# NAM2 [...] 
+5.c2. , TAK4~a#? X 
+@column 2 
+1. 2(N50)# 8(N14)# , GA~a# KI# 
+2. , 5(N57)#? URU~a1# AN# |SZU2.EN~a|# SZITA~a1# 
+@reverse 
+1. 1(N45) 4(N50) 1(N14) 1(N22) , 5(N57) URU~a1 SZITA~a1 AN |SZU2.EN~a| 
+
+
+Primary publication: MSVO 4, 58
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): BIN 08, 003; Woods, Christpher, OIMP 32 (2015) 080
+Collection: Nies Babylonian Collection, Yale Babylonian Collection, New Haven, Connecticut, USA
+Museum no.: NBC 05921
+Accession no.: 
+Provenience: uncertain (mod. uncertain)
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001qq7hz
+Composite no.: 
+Seal no.: 
+CDLI no.: P005460
+Transliteration:
+&P005460 = MSVO 4, 58
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1.a. 2(N01) , SZAM2 APIN~a 
+1.b1. , (NIM~b2)a 
+1.b2. , (ZATU659)a 
+2.a. 2(N01) , RAD~a 
+2.b1. , (ADAB SZUBUR)a 
+2.b2. , (NIM~b1 EN~a)a 
+3.a. 1(N01) , SANGA~a 
+3.b. , (GIR3@g~b 3(N57))a 
+4.a. 1(N01) , SUKKAL ME~a 
+4.b. , (6(N57) KISZ)a 
+5. , ADAB SZUBUR 
+@column 2 
+1.a. 2(N01) , MAR~a AN 
+1.b1. , (ZATU751~a? EN~a)a 
+1.b2. , (|BU~a+DU6~a| GUL)a 
+2. 4(N01)# , DAR~c PAP~a 
+3. , DAR~c PAP~a 
+@reverse 
+@column 1 
+1. 6(N01) , ADAB SZUBUR 
+2. 6(N01) , DAR~c# PAP~a# 
+@column 2 
+1. 1(N14) 2(N01) , EN~a TE AN MAR~a 
+ 
+
+Primary publication: MSVO 4, 59
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): BIN 08, 004
+Collection: Nies Babylonian Collection, Yale Babylonian Collection, New Haven, Connecticut, USA
+Museum no.: NBC 05829
+Accession no.: 
+Provenience: uncertain (mod. uncertain)
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001qq7jg
+Composite no.: 
+Seal no.: 
+CDLI no.: P005461
+Transliteration:
+&P005461 = MSVO 4, 59
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1. [...] 8(N14)#? 3(N01)# , [...] KISAL~b1#? [...] 
+2. 2(N47) 1(N20) , |EZEN~ax(HI.1(N57).AN)| 
+3. 1(N47)# 3(N20) 3(N05) , SZE~a# DI X 
+@column 2 
+1. , [...] AN MAR~a UR5~a [...] 
+@reverse 
+@column 1 
+1. 2(N34) 2(N45) 6(N14) 3(N01) 1(N39~a) , AN# MAR~a# SZE~a X 
+2. 2(N37) 1(N47) 8(N20) 4(N05) , UR5~a# 
+3. [...] 2(N20)# 2(N05)# [...] 1(N42~a) [...] , [...] 
+ 
+
+
+Primary publication: MSVO 4, 60
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): BIN 08, 005
+Collection: Nies Babylonian Collection, Yale Babylonian Collection, New Haven, Connecticut, USA
+Museum no.: NBC 05828
+Accession no.: 
+Provenience: uncertain (mod. uncertain)
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001qq7k0
+Composite no.: 
+Seal no.: 
+CDLI no.: P005462
+Transliteration:
+&P005462 = MSVO 4, 60
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1. 2(N14) , NAR# SZE~a# 
+2. 1(N14) , SZE~a EN~a A 
+3. 1(N14) , SZE~a NAR# 
+4. , SZE~a# PAP~a 
+@column 2 
+1. 1(N01)# , UD5~a 
+2. 2(N01) , PA~a 
+3. 1(N01)# , ZATU710#? GI 
+4. 3(N01)# , SZU# SAL PAP~a# 
+5. 2(N01)# , AB2# GI4~a# 
+6. 1(N01) , GU4@g BAR 
+7. 1(N01) , PAP~a SZE~a# 
+@column 3 
+1. 1(N14)# 5(N01)# , SZE~a SZU 
+ 
+
+
+Primary publication:
+
+ MSVO 4, 61
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): BIN 08, 009; Woods, Christpher, OIMP 32 (2015) 081
+Collection: Yale Babylonian Collection, New Haven, Connecticut, USA
+Museum no.: YBC 07056
+Accession no.: 
+Provenience: uncertain (mod. uncertain)
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001qq7mh
+Composite no.: 
+Seal no.: 
+CDLI no.: P005463
+Transliteration:
+&P005463 = MSVO 4, 61
+#atf: lang qpc 
+@tablet 
+@obverse 
+1. 2(N14)# 5(N01)# , UD5~a 
+#tr.en: 25 nanny goats, 
+2.a. 5(N01) , MASZ2 
+#tr.en: 5 billy goats: 
+2.b. EN~a KU6~a RAD~a 
+#tr.en: Lord KURAD; 
+@reverse 
+1. 3(N14) , UDU~a [...] 
+#tr.en: (total:) 30 small cattle. 
+# calculation: 25 + 5 = 30 
+
+
+Primary publication: MSVO 4, 62
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): A. Falkenstein, OLZ 40, 5
+Collection: National Museum of Iraq, Baghdad, Iraq
+Museum no.: IM 023429
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001qq9fw
+Composite no.: 
+Seal no.: 
+CDLI no.: P005464
+Transliteration:
+&P005464 = MSVO 4, 62
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1.a. 1(N34) 5(N14) , AN MAR~a PA~a SZE~a 
+1.b. 3(N36) 2(N46) 3(N19)# , 
+2. 1(N45) 8(N14) 2(N01)? , X SZE~a# [...] 
+3. 3(N14) 3(N01) , SZE~a EN~a# DUG~a 
+4. 6(N14) 4(N01) , SZE~a U2~b# A# RU 
+5. , AN MAR~a GIBIL# PA~a U4 
+@column 2 
+1. [1(N34) ...] , [SZE~a ...] 
+2. 1(N34) 2(N45)# [...] 1(N14)# [...] , SZE~a X [...] 
+3. 1(N34) 1(N45) 4(N01) [...] , SZE~a [...] 
+4. , DIB#? BU~a PAP~a NAM2 
+@reverse 
+@column 1 
+1.a. 2(N34) 3(N14) 3(N01) , AN MAR~a 
+1.b. 3(N36) 2(N46)# 3(N19)# , 
+2. 4(N34) 6(N14) [...] , DIB#? BU~a PAP~a NAM2 
+3. , AN# MAR~a PA~a GIBIL U4 
+@column 2 
+$ blank space 
+
+
+Primary publication: MSVO 4, 63
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): A. Falkenstein, OLZ 40, 2
+Collection: National Museum of Iraq, Baghdad, Iraq
+Museum no.: IM 023430
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001qq9gd
+Composite no.: 
+Seal no.: 
+CDLI no.: P005465
+Transliteration:
+&P005465 = MSVO 4, 63
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1. 8(N14) 5(N01) , SZESZ~a 
+2. 3(N14) 5(N01) , E2~a# DU# 
+3. , EN~a# A 
+@column 2 
+$ blank space 
+@reverse 
+1. 1(N45)# 2(N14)# 4(N01)# , [EN~a] A# 
+
+
+Primary publication: MSVO 4, 64
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): A. Falkenstein, OLZ 40, 1
+Collection: National Museum of Iraq, Baghdad, Iraq
+Museum no.: IM 023431
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001qq9hx
+Composite no.: 
+Seal no.: 
+CDLI no.: P005466
+Transliteration:
+&P005466 = MSVO 4, 64
+#atf: lang qpc 
+@tablet 
+@obverse 
+1. 5(N19)# 6(N01)# , SZAM2 AN MAR~a PA~a 
+@reverse 
+$ blank space 
+
+
+Primary publication: MSVO 4, 65
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): A. Falkenstein, OLZ 40, 3
+Collection: National Museum of Iraq, Baghdad, Iraq
+Museum no.: IM 023428
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001qq9jf
+Composite no.: 
+Seal no.: 
+CDLI no.: P005467
+Transliteration:
+&P005467 = MSVO 4, 65
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1. 1(N19) 4(N04) , AN |SZU2.EN~a| SZITA~a1 
+2. 1(N19) , |SZE~a&SZE~a| ZATU773~b IB~a 
+3. 1(N04) , SAL ZATU751~b BU~a 
+4. 1(N04) , DIM~a EN~a 
+5. 2(N04) , PAP~a 
+6. 1(N04) , SAG# X 
+@column 2 
+1. 3(N41) , NE~a SAL 
+2. 2(N41) , U4 AN SAL 
+3. 3(N41) , GI6# SAL 
+4. 1(N04) , AN# AMA~a# GI 
+5. 1(N04) , X [...] 
+6. 1(N04) , U4 X [...] 
+@reverse 
+1. 4(N19) 1(N04) 3(N41)? , 
+
+
+Primary publication: MSVO 4, 66
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): A. Falkenstein, OLZ 40, 6; copy published R. Englund in J. Bauer, R. Englund and M. Krebernik, OBO 160/1 (Freiburg Switzerland 1998) 193 fig. 75
+Collection: National Museum of Iraq, Baghdad, Iraq
+Museum no.: IM 023426
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001qq9kz
+Composite no.: 
+Seal no.: 
+CDLI no.: P005468
+Transliteration:
+&P005468 = MSVO 4, 66
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1.a. 1(N34) , 1(N39~a) 
+1.b. 2(N20) , 
+2.a. 1(N51) , 1(N24) 
+2.b. 2(N20) , 
+3.a. 1(N51)# , 1(N26) 
+3.b. 1(N20) 2(N05) , 
+4.a. 2(N51)# 1(N34) , 1(N28) 
+4.b. 2(N20)# 3(N05)# , 
+5.a. 5(N51) , 1(N29~a) 
+5.b. 4(N20) , 
+6.a. 5(N54)# , |6(N57).GAR| 
+6.b. 1(N37) 3(N20) 2(N05) , 
+@column 2 
+1.a. 2(N34)# , |DUG~axU2~a|# 
+1.b. 5(N20)# 1(N05) 1(N42~a) , 
+2.a. 3(N34)# , |DUG~ax1(N57)| 
+2.b. 6(N20) , 
+3.a. 5(N34) , KASZ~a 
+3.b. 3(N20) 2(N05) , 
+@reverse 
+@column 1 
+1.a. 1(N54) , BA GAR 
+1.b. 1(N47) 1(N20) 5(N05)# , 
+2.a. 5(N54) , |5(N57).GAR| 
+2.b. 1(N37) 3(N20) 2(N05) , 
+3.a. 1(N48) , DUG~a KASZ~a 
+3.b. 1(N47) 4(N20) 3(N05) 1(N42~a) , 
+@column 2 
+1. 1(N37) 2(N47) 9(N20) 4(N05) 1(N42~a) , 
+2. 8(N18) 4(N03) 1(N40) , 
+ 
+
+
+Primary publication: MSVO 4, 67
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): A. Falkenstein, OLZ 40, 4
+Collection: National Museum of Iraq, Baghdad, Iraq
+Museum no.: IM 023427
+Accession no.: 
+Provenience: Larsa (mod. Tell as-Senkereh) ?
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001qq9mg
+Composite no.: 
+Seal no.: 
+CDLI no.: P005469
+Transliteration:
+&P005469 = MSVO 4, 67
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1.a. 1(N01) , DARA4~c1 
+1.b1. , DUG~a 
+1.b2. , MU 
+2.a. 1(N01) , 1(N04) GI 
+2.b1. , GA~a 
+2.b2. , HI@g~b 
+3.a. 1(N01) , GI NIN 
+3.b1. , SUKKAL 
+3.b2. , SZIDIM 
+4.a. 1(N01) , LU2 PAP~a 
+4.b1. , SANGA~a 
+4.b2. , SI4~f 
+5.a. 1(N01) , MAR~a PAP~a SAL 
+5.b1. , GURUSZDA 
+5.b2. , |SILA3~axSZU2| 
+6.a. 1(N01) , DA~a |MUSZENx2(N57)| 
+6.b1. , BAHAR2~c 
+6.b2. , KID~b# 
+7. , SZIM~a SAG@n 
+@column 2 
+1.a. 1(N01) , ZATU628~b KI SAG 
+1.b1. , ZAG~a 
+1.b2. , KISZ# PAP~a 
+2.a. 1(N01) , DIM~a 
+2.b1. , PAP~a |MUSZENx2(N57)| 
+2.b2. , ZATU752 AN# MAR~a 
+3.a. 1(N01) , TUM~c 
+3.b1. , AN MAR~a |(SUKUD+SUKUD)~b| 
+3.b2. , KAB 
+4.a. 1(N01) , LA2 NI~a 
+4.b1. , ZATU710 APIN~a 
+4.b2. , SI GAR SZU 
+5. , SZAM2 EN~a A 
+@reverse 
+@column 1 
+1. 6(N01) , SAL SZIM~a 
+2. 4(N01) , SZAM2 
+@column 2 
+1. 1(N14) , SAL# SZAM2# AN MAR~a SZIM~a 
+ 
+
+
+Primary publication: MSVO 4, 68
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): Kienast, Burkhart, JCS 19, 42, no. 52
+Collection: private: anonymous, unlocated
+Museum no.: Anonymous 005470
+Accession no.: 
+Provenience: uncertain (mod. uncertain)
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001r1v5x
+Composite no.: 
+Seal no.: 
+CDLI no.: P005470
+Transliteration:
+&P005470 = MSVO 4, 68
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1. 1(N14) , BARA2~a DUB~b URI3~a#? 
+2. 5(N01) , BARA2~a GAL~a MAR~b 
+@reverse 
+@column 1 
+1. 1(N14) 5(N01) , BARA2~a# X 
+ 
+
+
+Primary publication: MSVO 4, 69
+Author(s): Englund, Robert K.
+Publication date: 1996
+Secondary publication(s): Kienast, Burkhart, JCS 19, 42, no. 53
+Collection: private: anonymous, unlocated
+Museum no.: Anonymous 005471
+Accession no.: 
+Provenience: uncertain (mod. uncertain)
+Excavation no.: 
+Period: Uruk III (ca. 3200-3000 BC)
+Dates referenced: 
+Object type: tablet
+Remarks: 
+Material: clay
+Language: undetermined
+Genre: Administrative
+Sub-genre: 
+CDLI comments: 
+Catalogue source: 20011204 protocuneiform_catalogue
+ATF source: Englund, Robert K.
+Translation: no translation
+UCLA Library ARK: 21198/zz001r1v6f
+Composite no.: 
+Seal no.: 
+CDLI no.: P005471
+Transliteration:
+&P005471 = MSVO 4, 69
+#atf: lang qpc 
+@tablet 
+@obverse 
+@column 1 
+1. 2(N01) , DUG~c ZATU649? |GI&GI| GU7 
+@column 2 
+1. 1(N57)? , NU11 AN
+
+ SI#? KALAM~b# 
+2. 1(N57) , |GA~a.ZATU753|? ZATU751~a? 
+3. , KASZ~c? X GI 
+ 
+
