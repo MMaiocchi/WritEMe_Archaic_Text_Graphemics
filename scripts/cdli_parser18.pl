@@ -1,28 +1,33 @@
 #!/usr/bin/perl
+
 use strict;
 use warnings;
 use JSON::MaybeXS ();
 use Data::Dumper;
 
-print "\n--- CDLI parser (v.0.13) ---\n";
-print "This program generates KWIC indexes from CDLI transliterations\n";
-print "--- Use: 1. search for all texts from a given period on CDLI (ex.: Uruk)\n";
-print "---      2. click on \"download all texts\" within CDLI results page\n";
-print "---      3. save file as \"CDLI_results.txt\" in a sub-folder named input_CDLI\n";
-print "The program assumes that the following sub-folders exist in the working folder:\n";
-print " data\n";
-print " images\n";
-print " input_CDLI\n";
-print " json\n";
-print " templates\n";
+print "\n--- CDLI parser (v.0.16) ---\n";
+print "This program parses images of cuneiform signs and generates a database taking CDLI transliterations as input\n";
+print "--- 1. Images:\n";
+print "----- Format: .png\n";
+print "----- Naming conventions: [SIGN_NAME]_[Pnumber]__[obv/rev.x.x#x]___[OTHER]\n";
+print "         special characters: use ` for ?, -- for ~\n";
+print "                           : use -- also to distinguish two signs having the same name in the same line/box\n";
+print "                           : use !! to mark remarkable variants\n";
+print "                           : do not use # anywhere\n";
+print "         ex.: SANGA--a`_P000001__obv.1.1.--2___rotated\n";
+print "         ex.: DUB--b!!_P000002__obv.2.3___edited\n";
+print "--- 2. CDLI transliterations:\n";
+print "----- Use: 1. search a period on CDLI (ex.: Uruk)\n";
+print "-----      2. click on \"download all texts\" within CDLI results page\n";
+print "-----      3. save file as \"CDLI_results.txt\" in the current directory\n";
 
-
-my $path = 'C:\Users\MyFolder'; #to be adjusted to your working directory
+my $path = 'C:\Users\Massimo.MAIOCCHI\ownCloud\PALAEOGRAPHY_DB';
 my $datapath = 'data\\';
 my $inputdir = '\input_CDLI';
 my $jsonpath = 'json\\';
-
+my $skip_composite = 'true';
 chdir $path or die "Impossible to navigate to $path: $!\nProgram terminated prematurely\n";
+
 
 my %roman_hash = (
   '1' => 'i',
@@ -67,14 +72,56 @@ my %roman_hash = (
   '40' => 'iv'  
 );
 
+
+my %hash_num_alphas = (
+  "a"  => "00",
+  "b"  => "01",
+  "c"  => "02",
+  "d"  => "03",
+  "e"  => "04",
+  "f"  => "05",
+  "g"  => "06",
+  "ĝ"  => "06",
+  "ŋ"  => "07",
+  "h"  => "08",
+  "ḥ"  => "09",
+  "ḫ"  => "10",
+  "i"  => "11",
+  "j"  => "12",
+  "k"  => "13",
+  "l"  => "14",
+  "m"  => "15",
+  "n"  => "16",
+  "o"  => "17",
+  "p"  => "18",
+  "q"  => "19",
+  "r"  => "20",
+  "s"  => "21",
+  "š"  => "22",
+  "t"  => "23",
+  "ṭ"  => "24",
+  "u"  => "25",
+  "v"  => "26",
+  "w"  => "27",
+  "x"  => "28",
+  "y"  => "29",
+  "z"  => "30",
+  "×"  => "31",
+  "."  => "32",
+  "&"  => "33"
+);
+
+
 chdir $path.$inputdir or die "Impossible to navigate to $path$inputdir: $!\nProgram terminated prematurely\n";
 
 my $input;
 
 {
   local $/; #Enable 'slurp' mode
-  open (my $fh, "<", "CDLI_results.txt") || die "Error opening the CDLI results file!:$!\n\n";;
+  #open (my $fh, "<", "CDLI_results_TEST4.txt") || die "Error opening the CDLI results file!:$!\n\n";
+  open (my $fh, "<", "CDLI_results_3.txt") || die "Error opening the CDLI results file!:$!\n\n";;
   $input = <$fh>;
+  #@json_array = <$fh>;
   close $fh;
 }
 
@@ -119,6 +166,7 @@ for (my $i=0;$i<=$#texts;$i++) {
     
     $catalogue_entry =~ s/\n\n\s+/ /sg;#fix random carriage returns, ex: CDLI\n no.: P001836
     
+    
     if ($catalogue_entry !~ m/^[A-z]/) { 
       next
     } else {
@@ -132,17 +180,26 @@ for (my $i=0;$i<=$#texts;$i++) {
       next;
     }
 
-    
     my ($CDLI_no) = $catalogue_entry =~ m/CDLI no.: (.+)/m;
     if (!$CDLI_no) {
         ($CDLI_no) = $transliteration =~ m/&(P\d+)/m;
     }
+
     
     if (!$CDLI_no) {
         print "===\nFATAL ERROR:\n--------catalogue--------:$catalogue_entry\n--------transliteration:$transliteration\n=========\ntext:\n$text\n========EXIT\n";
         exit 0;    
     }
     
+    if ($skip_composite eq 'true' && $catalogue_entry =~/Composite no\.: Q\d+/ && $catalogue_entry =~/Remarks: composite text/) {
+        print "  --skipped composite text $CDLI_no\n";
+        next;
+    }
+    if ($skip_composite eq 'true' && $catalogue_entry =~/Primary publication: .+? composite\s*\n/) {
+        print "  --skipped composite text $CDLI_no\n";
+        next;
+    }
+
     
     my @lines = split /\n/, $catalogue_entry;
     foreach my $line (@lines) {
@@ -160,7 +217,7 @@ for (my $i=0;$i<=$#texts;$i++) {
         if (!$datum) {
             $datum = '-';            
         }
-        
+
         $hash_data{$CDLI_no}{$data_type}{$datum}++;
     }
     
@@ -192,13 +249,11 @@ for (my $i=0;$i<=$#texts;$i++) {
         $gen[0] = 'uncertain';
     }
     
-    
     $statistics{'provenance'}{$prov[0]}++;
     $statistics{'genre'}{$gen[0]}++;
     $statistics{'period'}{$per[0]}++;
     $statistics{'provenance2'}{$prov[0]}{$CDLI_no}++;
     
-    #check 1 for texts without transliteration 
     $transliteration =~ s/^\s+|\s+$// if ($transliteration);
     if (!$transliteration) {
         $transliteration = '[NO_TRANSLITERATION]';
@@ -207,13 +262,12 @@ for (my $i=0;$i<=$#texts;$i++) {
     }
     $transliteration =~ s/\n\s+/ /s;#fix random carriage returns
     my @lines_trans = split /\n+/, $transliteration;
-    #check 2 for texts without linguistic content, or not transliterated but with annotations
+    #check 2 for texts without linguistic content or not tranlisterated but with annotations
     my %test_trans = ();
     foreach my $line (@lines_trans) {
       chomp $line;
         $line =~s/^\s+|\s+$//;
         next if (!$line);
-        next if ($line =~ m/^\@/);
         next if ($line =~ m/^\$/);
         next if ($line =~ m/^\#/);
         next if ($line =~ m/^\&/);
@@ -229,6 +283,7 @@ for (my $i=0;$i<=$#texts;$i++) {
     $statistics{'total_texts_with_transliteration'}++;
     
     my $object_type = ""; #@tablet, @envelope, @prism, @object
+    my $fragment = "";
     my $obv_rev = "";
     my $column = "";
     my $seal = "";
@@ -257,6 +312,10 @@ for (my $i=0;$i<=$#texts;$i++) {
         }
         if ($line =~ m/\@object/) {
            $object_type = $line;
+           next
+        }
+        if ($line =~ m/\@fragment (.+)/) {
+           $fragment = 'frag_'.$1.'_';
            next
         }
         if ($line =~ m/\@obv/) {
@@ -314,7 +373,7 @@ for (my $i=0;$i<=$#texts;$i++) {
             my $line_num = $1;
             my $tr_line = $2;
             $tr_line =~s/^\s+|\s+$//;
-            my $refx = $surface.'.'.$obv_rev.'.'.$seal.'.'.$column.'.'.$line_num;
+            my $refx = $surface.'.'.$fragment.$obv_rev.'.'.$seal.'.'.$column.'.'.$line_num;
             $refx =~s/^\.//;
             $refx =~ s/\.\.+/\./g;
             $refx =~s/\.$//;
@@ -342,8 +401,8 @@ for (my $i=0;$i<=$#texts;$i++) {
 
                 $token =~ s/^\(//;
                 $token =~ s/\)\w$//;
-                next if ($token =~ m/^\d.*\.$/); #skips unwanted tokens such as 3.a.
-                next if ($token =~ m/^0\d\d$/); #skips unwanted tokens such as 003
+                next if ($token =~ m/^\d.*\.$/); #skips unwnated tokens such as 3.a.
+                next if ($token =~ m/^0\d\d$/); #skips unwnated tokens such as 003
                 
                 next if (!$token);                   
                 $statistics{'total_tokens'}++;
@@ -396,15 +455,11 @@ for (my $i=0;$i<=$#texts;$i++) {
         } elsif ($line =~ m/\>>/) {#skips cross-refereces lines
           #...
         } else {
+
             print "unexpected line: -->>$line<<--\n" if ($line !~m/^\s+$/);
             print WARNINGS "unexpected line: -->>$line<<--\n" if ($line !~m/^\s+$/);
         }
-        
-        
-        
-
     }
-    
 }
 
 
@@ -426,13 +481,16 @@ foreach my $token (sort keys %geo_hash) {
     $g_count++;
     $final_freq_hash{$token}{$g_count} = 'Total freq.:'.$count_tot_freq{$token}.'x';
     print OUT "\t";
-    foreach my $gen (sort keys %{$geo_hash{$token}}) {   
+    foreach my $gen (sort keys %{$geo_hash{$token}}) {
       foreach my $t_num (keys %{$geo_hash{$token}{$gen}}) {
           my @obvrev = sort keys %{$geo_hash{$token}{$gen}{$t_num}};
           for (my $i=0;$i<=$#obvrev;$i++) {
               my $o_r = $obvrev[$i];
+              my @cols = "";
+              if (exists $geo_hash{$token}{$gen}{$t_num}{$o_r}) {
+                @cols = sort {sort_numeric_safe($a) <=> sort_numeric_safe($b)} keys %{$geo_hash{$token}{$gen}{$t_num}{$o_r}};
+              }
               
-              my @cols = sort {($a =~ /(\d+)/)[0] <=> ($b =~ /(\d+)/)[0]} keys %{$geo_hash{$token}{$gen}{$t_num}{$o_r}};
               for (my $k=0;$k<=$#cols;$k++) {
                   my $col = $cols[$k];
                   my $roman_col = $roman_hash{$col};
@@ -443,13 +501,11 @@ foreach my $token (sort keys %geo_hash) {
       }
     }
     
-    #sort by frequency then by transliteration
     foreach my $clean_tr (sort {scalar (keys %{$context_hash{$token}{$b}}) <=> scalar (keys %{$context_hash{$token}{$a}}) || $a cmp $b} keys %{$context_hash{$token}}) {
       my @CDLI_refs = sort (keys %{$context_hash{$token}{$clean_tr}});
       my $freq_tr = scalar @CDLI_refs;
       $final_translit_hash{$token}{$freq_tr}{$clean_tr} = [ @CDLI_refs ];
     }
-    
     
     foreach my $clean_tr (sort {scalar (keys %{$hash_clusters{$token}{$b}}) <=> scalar (keys %{$hash_clusters{$token}{$a}}) || $a cmp $b} keys %{$hash_clusters{$token}}) {
       my @CDLI_refs = sort (keys %{$hash_clusters{$token}{$clean_tr}});
@@ -465,13 +521,14 @@ foreach my $token (sort keys %geo_hash) {
       my $freq_tr = scalar @CDLI_refs;
       $final_cluster2_hash{$token}{$freq_tr}{$clean_tr} = [ @CDLI_refs ];
       foreach my $cdli_num (@CDLI_refs) {
+        #print "\t\t$cdli_num\n";
       }
     }  
 }
 
 ### CROSS CLUSTER CHECK ###
 my %noteworthy_variations = ();
-print "\n... crossing clusters data ...\n";
+print "... crossing clusters data ...\n";
 foreach my $cluster_nv (sort keys %cross_clusters_hash) {
   my @clusters = sort keys %{$cross_clusters_hash{$cluster_nv}};
   if (scalar @clusters > 1) {
@@ -487,7 +544,7 @@ foreach my $cluster_nv (sort keys %cross_clusters_hash) {
             my @CDLI_nums2 = sort keys %{$cross_clusters_hash{$cluster_nv}{$cluster2}};
             foreach my $CDLI_num2 (@CDLI_nums2) {
               $noteworthy_variations{$token}{$cluster2}{$CDLI_num2}++;
-              foreach my $token2 (sort keys %{$cross_clusters_hash{$cluster_nv}{$cluster2}{$CDLI_num2}}) {
+              foreach my $token2 (sort keys %{$cross_clusters_hash{$cluster_nv}{$cluster2}{$CDLI_num2}}) {             
                 $noteworthy_variations{$token}{$cluster2}{$CDLI_num2}++;
                 $noteworthy_variations{$token2}{$cluster}{$CDLI_num}++;
                 $noteworthy_variations{$token2}{$cluster2}{$CDLI_num2}++;         
@@ -499,7 +556,6 @@ foreach my $cluster_nv (sort keys %cross_clusters_hash) {
     }
   }
 }
-
 
 my %final_variations_hash = ();
 my %token_ranking = ();
@@ -529,24 +585,39 @@ my %hash_img_files = ();
 my %hash_img2 = ();
 my @filelist = glob ("*.png");
 foreach my $file (sort @filelist) {
-    #print "FILE:$file\n";
-    if ($file=~ m/(.+?)(\.png)$/) {
+    if ($file=~ m/(.+?)(\.png)$/) {  
         my $filename = $1;
         my $extension = $2;
+        
+        my $number_of_undescores = () = $filename =~ /_/gi;
+        if ($number_of_undescores > 3 && $number_of_undescores < 6) {
+            print "---WARNING: malformed image filename: $filename\n";
+        }
+  
         if ($filename =~m/^(.+?)_(P\d+.+?)__(.+)$/) {
             my $sign_name_file = $1;
             my $P_num_file = $2;
             my $ref = $3;
+            if (!$ref) {
+                print "---WARNING: malformed image filename: $filename\n";
+            }
+            my $remarkable = "";
+            if ($sign_name_file =~ m/\!\!/) {
+                $remarkable = "x";
+            }
+            my $special = "";
+            if ($ref =~ m/(.+?)___(.+)$/) {
+                $ref = $1;
+                $special = $2;
+            }          
             $sign_name_file =~ s/--/~/g;
-            $sign_name_file =~ s/'//g;
+            $sign_name_file =~ s/`//g;         
             if ($P_num_file =~ m/(P\d+)\D/) {
                 $P_num_file =$1;
             }
             my $Pnumref = $P_num_file.' '.$ref;
             $hash_img_files{$sign_name_file}{$Pnumref} = $file;
-            $hash_img2{$sign_name_file}{$file}++;
-            #print "\t\t>>$Pnumref<<\n";
-            
+            $hash_img2{$sign_name_file}{$file}++;            
         } else {
           print "---WARNING: malformed image filename: $filename\n";
         }
@@ -560,7 +631,6 @@ foreach my $file (sort @filelist) {
 
 #GRAPHEMICS
 #STEP 1
-#my $splitting_chars = '\.|\+|\&|[^~]x|%|\(|\)|\|';
 print "... graphemic analysis ...\n";
 my $splitting_chars = '\.|\+|\&|x|%|\(|\)|\|';
 my %graphemic_hash = ();
@@ -578,13 +648,12 @@ foreach my $sign (keys %context_hash) {
     $s =~ s/\)//g;
     $s =~ s/\(//g;
     $s =~ s/\|//g;
-    #$s =~ s/\)\)$//;#1(N57))) -> 1(N57)
-    #$s =~ s/^\(//;#(HI -> HI
     $s =~s/(\d)\[\[(.+?)\]\]/$1\($2\)/g;;#un-mask numbers
     next if ($s =~m/^~\w\w?$/);
     next if (!$s);
     next if ($s=~ m/~x$/);#skips ZA~x as in ZA~x(|3(N57).(NI~a@gx1(N04))|), where the indication in parenthesis describes the sign being processed
     $s = $s.'x' if ($s =~ m/~$/);#workaround for restoring ZA~x instead of ZA~, NB: x is a splitting graph
+    next if ($s eq 'X');
     $graphemic_hash{$sign}{$s}++ if ($sign ne $s);
   }
 }
@@ -622,12 +691,9 @@ foreach my $sign (keys %context_hash) {
             $i--
         };
     }
-
     my $c = 0;
     while( @queue ) {
         my $string = shift @queue;    
-        #my $string_backup = $string;
-        #print "--- $string\n";
         my @groups = $string =~ m/$regex/g;
         my @groups_backup = @groups;
         foreach my $group_back (@groups_backup) {
@@ -637,7 +703,6 @@ foreach my $sign (keys %context_hash) {
             $group_back =~ s/^\(//;
             $group_back =~ s/\)$//;
             $group_back =~s/(\d)\[\[(.+?)\]\]/$1\($2\)/g;#un-mask numbers
-
             $graphemic_hash{$sign}{$group_back}++ if ($sign ne $group_back);
         }
         unshift @queue, map { s/^<//; s/>$//; $_ } @groups;
@@ -647,7 +712,9 @@ foreach my $sign (keys %context_hash) {
 #STEP 3: cross-referencing
 
 foreach my $sign (keys %graphemic_hash) {
+  next if ($sign eq 'X');
   foreach my $related (keys %{$graphemic_hash{$sign}}) {
+    next if ($related eq 'X');
     $graphemic_hash{$related}{$sign}++;
   }
 }
@@ -660,6 +727,7 @@ chdir $path or die "Impossible to navigate back to $path: $!\nProgram terminated
 #index
 open(INDEX, ">index.html") || die "Error creating the index html file!: $!\n\n";
 print INDEX '
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -683,6 +751,25 @@ body {
 	width:100%;
 	height:88%;
 }
+/* unvisited link */
+a:link {
+  color: #cc071e;
+}
+
+/* visited link */
+a:visited {
+  color: #cc071e;
+}
+
+/* mouse over link */
+a:hover {
+  color: #cc071e;
+}
+
+/* selected link */
+a:active {
+  color: #ec5a4f;
+}
 h1 {
   text-align: center;
   font-size:150%;
@@ -692,6 +779,7 @@ h1 {
   color: #000000;
   text-decoration: none;
   overflow: hidden;
+  border-bottom: 5px solid #DCDCDC;
 }
 .title {
   background-color: #f7f5e7;
@@ -738,7 +826,7 @@ h1 {
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #00fff7;
+  background-color: #fdfdfa;
   color: black;
 }
 
@@ -748,18 +836,18 @@ h1 {
   color: white;
 }
 </STYLE>
-<title>WritEMe archaic texts graphemic database</title>
+<title>WritEMe - Archaic Text Graphemics</title>
 </head>
 <body>
 <div class = "aParent">
-  <div class="title"><b>Writing and Accounting in Early Mesopotamia</b><br> - Archaic Texts Graphemic Database</div>
+  <div class="title"><b><font color ="cc071e">WritEMe</font></b> - Archaic Text Graphemics</div>
   <div class="topnav">
     <a href="index.html">Home</a>
     <a href="db_container.html" target="mainContainer">Database</a>
     <a href="readme.html" target="mainContainer">README</a>
     <a href="statistics.html" target="mainContainer">Statistics</a>
     <a href="download.html" target="mainContainer">Download</a>
-    <a href="https://github.com/MMaiocchi/WritEMe_database" target="_blank">GitHub</a>
+    <a href="https://github.com/MMaiocchi/WritEMe_Uruk_palaeography" target="_blank">GitHub</a>
     <a href="https://writeme.hypotheses.org" target ="_blank">Project</a>
   </div>
 </div>
@@ -832,7 +920,7 @@ print DB_DEF '
     </STYLE>
   </head>
   <body>
-    <p>Please click on an item on the left panel. Use the search function to filter the list.</p>
+    <p>Please click on an item on the left panel. Use the search function to further refine the list. Delete the default search value to get the full list of searchable items.</p>
   </body>
 </html>
 ';
@@ -864,9 +952,10 @@ print SIGNS '
 
                 // create a data table
                 var table = $(\'#my-table\').DataTable({
-                  paging: false
+                  paging: false,
+                  oSearch: {"sSearch": "dub~"}
                 });
-
+              
                 // Apply the search
                     table.columns().every( function () {
                             var that = this;
@@ -918,6 +1007,7 @@ print SIGNS '
 <body>
 ';
 print SIGNS '<p align=center><a href ="image_catalogue.html" target="middle">Image catalogue</a></p>'."\n";
+print SIGNS '<p>Active element: <span id="signNameHolder">--</span></p>';
 print SIGNS '<table id="my-table" class="display" cellspacing="0" style="width:100%">'."\n";
 print SIGNS "<thead><tr><th><\/th><\/tr><\/thead>\n\t<tbody>";
 
@@ -931,13 +1021,20 @@ foreach my $sign (sort keys %context_hash) {
   my $url = $sign.'_dataPage.html';
   $url =~ s/\|//g;
   $url = $datapath.$url;
-  print SIGNS "\t<tr><td>".'<a href = "'.$url.'" target="middle">'.$sign.'</a></td></tr>'."\n";
+  print SIGNS "\t<tr><td>".'<a href = "'.$url.'" target="middle" onclick="change_signName'."('$sign')".'">'.$sign.'</a></td></tr>'."\n";
 }
 
 
 print SIGNS "\t<\/tbody>\n".' 
 </table>
 </body>
+<script>
+function change_signName(activeSign){
+  $("#signNameHolder").html(activeSign);
+  $("#signNameHolder").css("font-weight","Bold");
+}
+</script>
+
 </html>';
 close SIGNS;
 
@@ -965,7 +1062,154 @@ foreach my $sign (sort keys %geo_hash) {
     <html lang="en">
     <head>
     <meta charset="utf-8"/>
+    <!-- Include jquery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Include jquery mark ( for highlighting text )-->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js),datatables.mark.js"></script>
+
+  <!-- Include Data Tables-->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+  <!-- CSS -->
+  <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <!-- JS -->
+  
+  <script>
+    $.extend(true, $.fn.dataTable.defaults, {
+      mark: true
+    });
+  </script>
+
+  <!-- Some custom js -->
+  <script type="text/javascript" class="init">
+    //<![CDATA[
+
+    $(document).ready(function() {
+
+      // Setup - add a text input to each header cell
+      $(\'#example thead tr\')
+        .clone(true)
+        .addClass(\'filters\')
+        .appendTo(\'#example thead\');
+
+      var table = $(\'#example\').DataTable({
+        language: {
+        "search": "Global search:"
+        },
+        orderCellsTop: true,
+        fixedHeader: true,
+        initComplete: function() {
+          var api = this.api();
+
+          // For each column
+          api
+            .columns()
+            .eq(0)
+            .each(function(colIdx) {
+              // Set the header cell to contain the input element
+              var cell = $(\'.filters th\').eq(
+                $(api.column(colIdx).header()).index()
+              );
+              var title = $(cell).text();
+              $(cell).html(\'<input type="text" placeholder="\' + title + \'" />\');
+
+              // On every keypress in this input
+              $(
+                  \'input\',
+                  $(\'.filters th\').eq($(api.column(colIdx).header()).index())
+                )
+                .off(\'keyup change\')
+                .on(\'keyup change\', function(e) {
+                  e.stopPropagation();
+
+                  // Get the search value
+                  $(this).attr(\'title\', $(this).val());
+                  var regexr = \'({search})\'; //$(this).parents(\'th\').find(\'select\').val();
+
+                  var cursorPosition = this.selectionStart;
+                  // Search the column for that value
+                  api
+                    .column(colIdx)
+                    .search(
+                      this.value != \'\' ?
+                      regexr.replace(\'{search}\', \'(((\' + this.value + \')))\') :
+                      \'\',
+                      this.value != \'\',
+                      this.value == \'\'
+                    )
+                    .draw();
+
+                  $(this)
+                    .focus()[0]
+                    .setSelectionRange(cursorPosition, cursorPosition);
+                });
+            });
+        },
+      });
+      
+      // create a data table for transliterations
+      var myTable = $(\'#transx\').dataTable({
+      language: {
+        "search": "Global search:"
+        },
+        columnDefs: [
+            { "type": "num", "targets": 0 }
+        ],
+        order: [[ 0, "desc" ]],
+        retrieve: true,
+        searchHighlight: true
+      });
+      
+      
+      
+      // create a data table for variants
+      var myTableVar = $(\'#var\').dataTable({
+      language: {
+        "search": "Global search:"
+        },
+        dom: \'Blfrtip\',
+        retrieve: true,
+        searchHighlight: true,
+        iDisplayLength: 100,
+        ordering: false
+      });
+      
+      // create a data table for cluster data1
+      var myTableCl1 = $(\'#cluster1\').dataTable({
+      language: {
+        "search": "Global search:"
+        },
+        columnDefs: [
+            { "type": "num", "targets": 0 }
+        ],
+        order: [[ 0, "desc" ]],
+        retrieve: true,
+        searchHighlight: true
+      });
+      
+      // create a data table for cluster data2
+      var myTableCl2 = $(\'#cluster2\').dataTable({
+      language: {
+        "search": "Global search:"
+        },
+        columnDefs: [
+            { "type": "num", "targets": 0 }
+        ],
+        order: [[ 0, "desc" ]],
+        retrieve: true,
+        searchHighlight: true
+      });
+      
+      
+    });
+
+    //]]>
+  </script>
+
     <STYLE>
+    table.dataTable span.highlight {
+      background-color: #FFFF88;
+    }
     body {
       font-family: "Times New Roman";
       font-size: 10.5pt;
@@ -1057,21 +1301,23 @@ foreach my $sign (sort keys %geo_hash) {
     .wrapper > div img {
       max-width: 100%;
     }
-
+    .hide img {
+      display: none
+    }
     </STYLE>
-    <title>WritEMe palaeography database -'."$sign".'_dataPAGE</title>
+    <title>WritEMe Archaic Text Graphemics -'."$sign".'_dataPAGE</title>
     </head>
     <body>';
     
     
   print DATAPAGE '
   <div class="tab">
-    <button class="tablinks" onclick="openCity(event, \'Sign_data\')" id="defaultOpen">Sign data</button>
+    <button class="tablinks" onclick="openCity(event, \'Palaeography\')" id="defaultOpen">Palaeography</button>
     <button class="tablinks" onclick="openCity(event, \'Translit_data\')">Transliteration data</button>
+    <button class="tablinks" onclick="openCity(event, \'Cluster_data1\')">Cluster data (1)</button>
+    <button class="tablinks" onclick="openCity(event, \'Cluster_data2\')">Cluster data (2)</button>
     <button class="tablinks" onclick="openCity(event, \'Variations\')">Variations</button>
-    <button class="tablinks" onclick="openCity(event, \'Cluster_data1\')">Cluster_data (1)</button>
-    <button class="tablinks" onclick="openCity(event, \'Cluster_data2\')">Cluster_data (2)</button>
-    
+    <button class="tablinks" onclick="openCity(event, \'Sign_data\')">Graphemics</button>  
   </div>'."\n";
   
   ############### Sign data ###########################
@@ -1087,7 +1333,6 @@ foreach my $sign (sort keys %geo_hash) {
     my $datum = $final_freq_hash{$sign}{$x};
     my @parts = split ':', $datum;
     print DATAPAGE "\t\t\t<tr><td style=\"width:20%\">$parts[0]:</td><td style=\"width:80%\">$parts[1]</td></tr>\n";
-
   }
   print DATAPAGE "\t\t<\/table>\n";
   print DATAPAGE "\t\t<\/p><\/div><br>\n";
@@ -1095,55 +1340,124 @@ foreach my $sign (sort keys %geo_hash) {
     print DATAPAGE "\t<div><b>Related graphemes</b>:\n<p>";
     my @related_signs = sort keys %{$graphemic_hash{$sign}};
     for (my $i=0;$i<=$#related_signs;$i++) {
-      if ((exists $geo_hash{$sign}) && ($related_signs[$i] !~ m/~x/)) {
+      
+      if (exists $geo_hash{$sign}) {
         my $url = $related_signs[$i];
         $url =~s/\|//g;
         $url = $url.'_dataPage.html';
-        $url = $datapath.$url;
         print DATAPAGE "<a href=\"$url\" target=\"middle\">$related_signs[$i]<\/a>";
         print DATAPAGE ',' if ($i<$#related_signs);
       } else {
         $graphemic_oddities{$sign}{$related_signs[$i]}++;
       }  
     }    
-    #print DATAPAGE join ', ', @related_signs;
     print DATAPAGE "\t</p></div><br>\n";
   }
-   
+  print DATAPAGE "\t<\/div>\n";
+  print DATAPAGE '<div id="Palaeography" class="tabcontent">'."\n";
   
-  print DATAPAGE "\n";
   if (exists $hash_img2{$sign}) {
-    print DATAPAGE "<p><b>Variations</b>:<br>\n";
+    print DATAPAGE "<p><button id=\"button\" class=\"HideDisplay\">HIDE ALL IMAGES IN ALL TABS</button><\/p>\n";
     print DATAPAGE "<div class=\"wrapper\">\n";
+    print DATAPAGE "\t".'<table id="example" class="display" cellspacing="0" style="width:100%">'."\n";
+    print DATAPAGE '<thead>
+          <tr>
+            <th>Image</th>
+            <th>Period</th>
+            <th>Genre</th>
+            <th>Provenance</th>
+            <th>Reference</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>'."\n";
   
     foreach my $file (sort keys %{$hash_img2{$sign}}) {
-        print DATAPAGE "   <div><img src=\"..\\images\\$file\">\n";
+        print DATAPAGE "\t\t<tr>\n";
+        print DATAPAGE "\t\t\t<td><img src=\"..\\images\\$file\"><\/td>\n";
+        
+        
         my @P_parts = split /_+/, $file;
+        my $sign_name_from_file = $P_parts[0];
+        my $final_remarks = '';
+        
+        if ($sign_name_from_file =~ m/\!\!/) {
+            $final_remarks = 'Remarkable variant.'; 
+        }
+        
+        if ($sign_name_from_file =~ m/`/) {
+            $final_remarks = $final_remarks.' Doubtful identification'; 
+        }
+        
         my $Pnum = $P_parts[1];
         $Pnum =~s/~\d+//;
         my $obv_rev = $P_parts[2];
         $obv_rev =~ s/\.png$//;
+        
+        my $special = "";
+        if (exists $P_parts[3]) {
+            $special = $P_parts[3];
+            $special = ucfirst ($special);
+            $special =~ s/\.png$//;
+            $final_remarks  = $final_remarks.' '.$special;
+        }
+           
+        $final_remarks =~ s/^\.\./\./g;
+        $final_remarks =~ s/^\s*\.\s*$//;
+        $final_remarks =~ s/^\s+|\s+$//;
+        
+        my $final_period = "-";
+        if (exists $hash_data{$Pnum}{'Period'}) {
+            my @period = keys %{$hash_data{$Pnum}{'Period'}};
+            $period[0] = "-" if (!$period[0]);
+            $final_period = $period[0];
+        }
+        $final_period =~ s/\(.+\)//;
+        
+        my $final_prov = "-";               
+        if (exists $hash_data{$Pnum}{'Provenience'}) {
+            my @provenance = keys %{$hash_data{$Pnum}{'Provenience'}};
+            $provenance[0] = '-' if (!$provenance[0]);
+            $final_prov = $provenance[0];
+        }  
+        $final_prov =~ s/uncertain \(mod\. uncertain\)/uncertain/;
+        $final_prov =~ s/uncertain \(mod\. Jemdet Nasr\)/Jemdet Nasr/;
+        $final_prov =~ s/ \(mod\. .+?\)//;
+        
         my @genre = keys %{$hash_data{$Pnum}{'Genre'}};
         #$hash_data{$CDLI_no}{$data_type}{$datum}++;
-        print DATAPAGE "<br><small><a href=\"https:\/\/cdli.ucla.edu\/$Pnum\" target =\"_blank\">$Pnum<\/a> $obv_rev ($genre[0]) <\/small>\n";
-        print DATAPAGE "   <\/div>\n";
+        print DATAPAGE "\t\t\t<td>$final_period<\/td>\n";
+        print DATAPAGE "\t\t\t<td>$genre[0]<\/td>\n";
+        print DATAPAGE "\t\t\t<td>$final_prov<\/td>\n";
+        print DATAPAGE "\t\t\t<td><a href=\"https:\/\/cdli.ucla.edu\/$Pnum\" target =\"_blank\">$Pnum<\/a> $obv_rev<\/td>\n";
+        print DATAPAGE "\t\t\t<td>$final_remarks</td>\n";
     }
-    print DATAPAGE "<\/div><\/p>\n";
+    print DATAPAGE "\t\t</tbody>\n\t</table>\n";
+    print DATAPAGE "<\/div>\n";
+  } else {
+    print DATAPAGE "[NO DATA]\n";
   }
-  
-  
-  
-  print DATAPAGE "\t<\/div>\n"; 
+    print DATAPAGE "\t<\/div>\n"; 
    
    
    
   ############### trasliteration data ###########################
-  #$final_translit_hash{$token}{$freq_tr}{$clean_tr} = @CDLI_refs;   
   print DATAPAGE '
       <div id="Translit_data" class="tabcontent">'."\n";
-    #$final_freq_hash{$token}{$g_count} = datum
-  print DATAPAGE "\t\t<table class=\"tbl\">\n";
-  print DATAPAGE "\t\t\t<tr>\n\t\t\t\t<th>freq.<\/th>\n\t\t\t\t<th>transliteration<\/th>\n\t\t\t\t<th>reference<\/th>\n\t\t\t<\/tr>\n";
+      if (exists $hash_img2{$sign}) {
+        print DATAPAGE  "<p><button id=\"button2\" class=\"HideDisplay\">HIDE ALL IMAGES IN ALL TABS</button><\/p>\n";
+      }
+      
+  print DATAPAGE "\t\t<table id=\"transx\" class=\"display\" cellspacing=\"0\" style=\"width:100%\">\n\t";
+  print DATAPAGE '<thead>
+        <tr>
+          <th>freq.</th>
+          <th>transliteration</th>
+          <th>reference</th>
+        </tr>
+      </thead>
+      <tbody>
+  ';
   foreach my $freq (sort {$b <=> $a} keys %{$final_translit_hash{$sign}}) {
     foreach my $tran (sort keys %{$final_translit_hash{$sign}{$freq}}) {
         print DATAPAGE "\t\t\t<tr>\n";
@@ -1171,9 +1485,11 @@ foreach my $sign (sort keys %geo_hash) {
                 print DATAPAGE " (unc.) ";
           }  
           my @genre = keys %{$hash_data{$P_num}{'Genre'}};
+          my @period = keys %{$hash_data{$P_num}{'Period'}};
           print DATAPAGE substr($genre[0], 0, 3).".: <a href=\"https:\/\/cdli.ucla.edu\/$P_num\" target =\"_blank\">".$CDLI_refs[$c]."<\/a><\/td>\n";     
           print DATAPAGE "\t\t\t\t\t\t<\/tr>";
         }
+        print DATAPAGE "\t\t\t\t\t\t<\/tbody>\n";
         print DATAPAGE "\t\t\t\t\t<\/table>\n";
         print DATAPAGE "\t\t\t\t<\/td>\n";
         print DATAPAGE "\t\t\t<\/tr>\n";
@@ -1183,36 +1499,32 @@ foreach my $sign (sort keys %geo_hash) {
   print DATAPAGE '</div>'."\n";    
   
   ############### Variations ###########################
-  #$final_variations_hash{$token}{$ranking}{$cluster}{$CDLI_num}++;
    print DATAPAGE '
       <div id="Variations" class="tabcontent">'."\n";
-  print DATAPAGE "\t\t<table class=\"tbl\">\n";
-  print DATAPAGE "\t\t\t<tr>\n\t\t\t\t<th>rank<\/th>\n\t\t\t\t<th>variations<\/th>\n\t\t\t\t<th>reference<\/th>\n\t\t\t<\/tr>\n";
+  print DATAPAGE "\t\t<table id=\"var\" class=\"display\" cellspacing=\"0\" style=\"width:100%\">\n";
+  print DATAPAGE "\t\t\t<thead><tr>\n\t\t\t\t<th>variations<\/th>\n\t\t\t\t<th>reference<\/th>\n\t\t\t<\/tr></thead>\n\t\t\t<tbody>\n";
   if (!keys %{$final_variations_hash{$sign}}) {
-    print DATAPAGE "\t\t\t<tr>\n\t\t\t\t<td>-<\/td>\n\t\t\t\t<td>[NO VARIATIONS]<\/td>\n\t\t\t\t<td>-<\/td>\n\t\t\t<\/tr>\n";
+    print DATAPAGE "\t\t\t<tr>\n\t\t\t\t<td>[NO VARIATIONS]<\/td>\n\t\t\t\t<td>-<\/td>\n\t\t\t<\/tr>\n";
   }
   foreach my $freq (sort {$b <=> $a} keys %{$final_variations_hash{$sign}}) {
-    foreach my $tran (sort keys %{$final_variations_hash{$sign}{$freq}}) {
+    foreach my $tran (sort {sort_variants($a) cmp sort_variants($b) || $a cmp $b} keys %{$final_variations_hash{$sign}{$freq}}) {
         print DATAPAGE "\t\t\t<tr>\n";
-        print DATAPAGE "\t\t\t\t<td>".$freq.'</td>'."\n";
         print DATAPAGE "\t\t\t\t<td>".$tran.'</td>'."\n";
         print DATAPAGE "\t\t\t\t<td>\n";
         print DATAPAGE "\t\t\t\t\t<table border=0 class=\"plain_tbl\">\n";
-        my @CDLI_refs = keys %{$final_variations_hash{$sign}{$freq}{$tran}};
+        my @CDLI_refs = sort keys %{$final_variations_hash{$sign}{$freq}{$tran}};
         for (my $c=0;$c<=$#CDLI_refs;$c++) {
           my ($P_num) = $CDLI_refs[$c] =~ m/(P\d+)/;
           print DATAPAGE "\t\t\t\t\t\t<tr>\n";
           print DATAPAGE "\t\t\t\t\t\t\t<td>";
           my $src = "";   
-          
-          
-          
+                
           print DATAPAGE "\n\t\t\t\t\t\t\t</td>";
           print DATAPAGE "\n\t\t\t\t\t\t\t<td>";
           if (($src) && ($src =~ m/'/)) {
                 print DATAPAGE " (unc.) ";
           }  
-          my @genre = keys %{$hash_data{$P_num}{'Genre'}};
+          my @genre = sort keys %{$hash_data{$P_num}{'Genre'}};
           print DATAPAGE substr($genre[0], 0, 3).".: <a href=\"https:\/\/cdli.ucla.edu\/$P_num\" target =\"_blank\">".$CDLI_refs[$c]."<\/a><\/td>\n";     
           print DATAPAGE "\t\t\t\t\t\t<\/tr>";
         }
@@ -1221,7 +1533,7 @@ foreach my $sign (sort keys %geo_hash) {
         print DATAPAGE "\t\t\t<\/tr>\n";
     }
   }
-  print DATAPAGE "\t\t<\/table>\n";
+  print DATAPAGE "\t\t\t<\/tbody>\t\t<\/table>\n";
   
   print DATAPAGE '</div>'."\n";    
   
@@ -1229,14 +1541,19 @@ foreach my $sign (sort keys %geo_hash) {
   
   ############### cluster data (1) ########################### 
  
-  #$final_cluster1_hash{$token}{$countx}{$linex} = [ @CDLI_refs ];
-  #$final_translit_hash{$token}{$freq_tr}{$clean_tr} = @CDLI_refs;   
   print DATAPAGE '
       <div id="Cluster_data1" class="tabcontent">'."\n";
-    #$final_freq_hash{$token}{$g_count} = datum
-  print DATAPAGE "\t\t<table class=\"tbl\">\n";
-  print DATAPAGE "\t\t\t<tr>\n\t\t\t\t<th>freq.<\/th>\n\t\t\t\t<th>cluster<\/th>\n\t\t\t\t<th>reference<\/th>\n\t\t\t<\/tr>\n";
-  foreach my $freq (sort {$b <=> $a} keys %{$final_cluster1_hash{$sign}}) {
+   if (exists $hash_img2{$sign}) {
+      print DATAPAGE  "<p><button id=\"button3\" class=\"HideDisplay\">HIDE ALL IMAGES IN ALL TABS</button><\/p>\n";    
+   }
+
+  print DATAPAGE "\t\t<table id=\"cluster1\" class=\"display\" cellspacing=\"0\" style=\"width:100%\">\n";
+  print DATAPAGE "\t\t\t<thead><tr>\n\t\t\t\t<th>freq.<\/th>\n\t\t\t\t<th>cluster<\/th>\n\t\t\t\t<th>reference<\/th>\n\t\t\t<\/tr>\t\t<\/thead>\n\t<tbody>\n";
+  if (! exists $final_cluster1_hash{$sign}) {
+    print DATAPAGE "<tr><td>--<\/td><td>[---NO CLUSTERS---]<\/td><td>[---NO REFERENCE---]<\/td><\/tr>\n";
+  }
+    
+  foreach my $freq (sort {$a <=> $b} keys %{$final_cluster1_hash{$sign}}) {
     foreach my $tran (sort keys %{$final_cluster1_hash{$sign}{$freq}}) {
         print DATAPAGE "\t\t\t<tr>\n";
         print DATAPAGE "\t\t\t\t<td>".$freq.'</td>'."\n";
@@ -1251,7 +1568,6 @@ foreach my $sign (sort keys %geo_hash) {
           my $src = "";
           if (exists $hash_img_files{$sign}{$CDLI_refs[$c]}) {
             $src = $hash_img_files{$sign}{$CDLI_refs[$c]};
-            #print "FOUND IMAGE: $src\n";
             print DATAPAGE "<img src=\"..\\images\\$src\">";
             
           } else {
@@ -1271,21 +1587,23 @@ foreach my $sign (sort keys %geo_hash) {
         print DATAPAGE "\t\t\t<\/tr>\n";
     }
   }
-  print DATAPAGE "\t\t<\/table>\n";
+  print DATAPAGE "\t\t<\/tbody>\n\t\t<\/table>\n";
   print DATAPAGE '</div>'."\n";    
   
-  
-  
+   
   ############### cluster data (2) ########################### 
- 
-  #$final_cluster1_hash{$token}{$countx}{$linex} = [ @CDLI_refs ];
-  #$final_translit_hash{$token}{$freq_tr}{$clean_tr} = @CDLI_refs;   
   print DATAPAGE '
       <div id="Cluster_data2" class="tabcontent">'."\n";
-    #$final_freq_hash{$token}{$g_count} = datum
-  print DATAPAGE "\t\t<table class=\"tbl\">\n";
-  print DATAPAGE "\t\t\t<tr>\n\t\t\t\t<th>freq.<\/th>\n\t\t\t\t<th>cluster<\/th>\n\t\t\t\t<th>reference<\/th>\n\t\t\t<\/tr>\n";
-  foreach my $freq (sort {$b <=> $a} keys %{$final_cluster2_hash{$sign}}) {
+   if (exists $hash_img2{$sign}) {
+      print DATAPAGE  "<p><button id=\"button4\" class=\"HideDisplay\">HIDE ALL IMAGES IN ALL TABS</button><\/p>\n";    
+   }  
+  print DATAPAGE "\t\t<table id=\"cluster2\" class=\"display\" cellspacing=\"0\" style=\"width:100%\">\n";
+  print DATAPAGE "\t\t\t<thead><tr>\n\t\t\t\t<th>freq.<\/th>\n\t\t\t\t<th>cluster<\/th>\n\t\t\t\t<th>reference<\/th>\n\t\t\t<\/tr>\t\t<\/thead>\n\t\t<tbody>";
+  if (! exists $final_cluster2_hash{$sign}) {
+    print DATAPAGE "<tr><td>--<\/td><td>[---NO CLUSTERS---]<\/td><td>[---NO REFERENCE---]<\/td><\/tr>\n";
+  }
+  
+  foreach my $freq (sort {$a <=> $b} keys %{$final_cluster2_hash{$sign}}) {
     foreach my $tran (sort keys %{$final_cluster2_hash{$sign}{$freq}}) {
         print DATAPAGE "\t\t\t<tr>\n";
         print DATAPAGE "\t\t\t\t<td>".$freq.'</td>'."\n";
@@ -1300,7 +1618,6 @@ foreach my $sign (sort keys %geo_hash) {
           my $src = "";
           if (exists $hash_img_files{$sign}{$CDLI_refs[$c]}) {
             $src = $hash_img_files{$sign}{$CDLI_refs[$c]};
-            #print "FOUND IMAGE: $src\n";
             print DATAPAGE "<img src=\"..\\images\\$src\">";
             
           } else {
@@ -1320,11 +1637,55 @@ foreach my $sign (sort keys %geo_hash) {
         print DATAPAGE "\t\t\t<\/tr>\n";
     }
   }
-  print DATAPAGE "\t\t<\/table>\n";
+  print DATAPAGE "\t\t\t<\/tbody>\n\t\t<\/table>\n";
   print DATAPAGE '</div>'."\n";    
   
   
-    print DATAPAGE '
+  print DATAPAGE '
+    
+  <script>
+
+      var body = document.body;
+      var button = document.getElementById(\'button\');
+      button.onclick = function() {
+          body.className = body.className == \'hide\' ? \'\' : \'hide\';
+      }
+
+      var button2 = document.getElementById(\'button2\');
+      button2.onclick = function() {
+          body.className = body.className == \'hide\' ? \'\' : \'hide\';
+      }
+
+      var button3 = document.getElementById(\'button3\');
+      button3.onclick = function() {
+          body.className = body.className == \'hide\' ? \'\' : \'hide\';
+      }
+
+      var button4 = document.getElementById(\'button4\');
+      button4.onclick = function() {
+          body.className = body.className == \'hide\' ? \'\' : \'hide\';
+      }
+
+
+  </script>
+    
+<script>
+$(\'.HideDisplay\').on(\'click\', function(){
+  const btns = document.querySelectorAll(\'.HideDisplay\');
+    for(btn of btns){
+        if(btn.innerText === \'HIDE ALL IMAGES IN ALL TABS\'){
+          btn.innerText = \'DISPLAY ALL IMAGES IN ALL TABS\';
+          btn.style.backgroundColor = \'green\';
+          btn.style.color = \'white\';
+        }
+        else{
+          btn.innerText = \'HIDE ALL IMAGES IN ALL TABS\';
+          btn.style = null;
+        }
+    }
+});
+</script>
+    
     <script>
     function openCity(evt, cityName) {
       var i, tabcontent, tablinks;
@@ -1752,9 +2113,6 @@ for (my $i=0;$i<=$#prov_labels2;$i++) {
 </div>';
 
 
-
-
-
 #period
 print STATS '<div class=\'parent inline-flex-parent\'>
   <div class=\'child\'>
@@ -1870,12 +2228,6 @@ for (my $i=0;$i<=$#prov_labels3;$i++) {
   </div>
 </div>';
 
-
-
-
-
-
-
 print STATS "<p><b>Texts processed</b>:<br>\n";
 print STATS '<div class ="columns">';
 foreach my $CDLI_num (sort keys %{$statistics{'texts'}}) {
@@ -1916,7 +2268,6 @@ print IMAGE_CATALOGUE '
   <body>
     <table>'."\n";
 
-
 foreach my $sign_name_file (sort keys %hash_img2) {
   print IMAGE_CATALOGUE "\t\t<tr>\n\t\t\t<td>$sign_name_file<\/td>\n";
   foreach my $file (sort keys %{$hash_img2{$sign_name_file}}) {
@@ -1930,38 +2281,133 @@ print IMAGE_CATALOGUE '  </table>
 ';
 close IMAGE_CATALOGUE;
 
-
 chdir $path or die "Impossible to navigate to $path. Program terminated prematurely.\n";
 
 #Download
 open(DOWNLOAD, ">download.html") || die "Error creating the db_default html file!: $!\n\n";
-print DOWNLOAD '
-<!DOCTYPE html>
+print DOWNLOAD '<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <title>WritEMe database - default</title>
-    <STYLE>
-      html,body{
-        width: 100%;
-        height: 100%;
-      }
-      body {
-        font-family: Verdana, sans-serif;
-        font-size: 10.5pt;
-        line-height: 12pt;
-        word-wrap: normal;
-        padding: 2em;
-      }
-    </STYLE>
-  </head>
-  <body>
-    <p>This page provides database data in <a href="https://www.json.org/" target="_blank">JSON</a> format, in order to maximize interoperability and data exploitation.</p>
+<head>
+<meta charset="utf-8"/>
+
+<STYLE>
+html,body{
+  width: 100%;
+  height: 100%;
+}
+body {
+  font-family: Verdana, sans-serif;
+  font-size: 10.5pt;
+  line-height: 12pt;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  margin: 0;
+}
+.mainContainer {
+	align:center;
+	width:100%;
+	height:88%;
+}
+/* unvisited link */
+a:link {
+  color: #cc071e;
+}
+
+/* visited link */
+a:visited {
+  color: #cc071e;
+}
+
+/* mouse over link */
+a:hover {
+  color: #cc071e;
+}
+
+/* selected link */
+a:active {
+  color: #ec5a4f;
+}
+h1 {
+  text-align: center;
+  font-size:150%;
+}
+.aParent {
+  background-color: #f7f5e7;
+  color: #000000;
+  text-decoration: none;
+  overflow: hidden;
+  border-bottom: 5px solid #DCDCDC;
+}
+.title {
+  background-color: #f7f5e7;
+  color: #000000;
+  font-size: 17px;
+  padding: 14px 16px;
+  text-decoration: none;
+  overflow: hidden;
+  float: left;
+  width: 35%
+}
+.left {
+	align:left;
+	width:15%;
+	height:88%;
+}
+.middle {
+	align:center;
+	width:82%;
+	height:88%;
+}
+.right {
+	align:right;
+	width:4%;
+	height:88%;
+}
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #f7f5e7;
+  overflow: hidden;
+  float: right;
+  width: 60%
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #fdfdfa;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+</STYLE>
+<title>WritEMe - Archaic Text Graphemics</title>
+</head>
+<body>
+<p>This page provides database data in <a href="https://www.json.org/" target="_blank">JSON</a> format, in order to maximize interoperability and data exploitation.</p>
+<p><b>1.</b> <a href="https://www.json.org/" target="_blank">JSON</a> data:</p>
     <ul>
       <li><a href="'.$jsonpath.'WritEMe_graphemic_db_transliteration_data.json" target="_blank">transliteration data</a></li>
       <li><a href="'.$jsonpath.'WritEMe_graphemic_db_variation_data.json.json" target="_blank">variation data</a></li>
       <li><a href="'.$jsonpath.'WritEMe_graphemic_db_cluster1_data.json.json" target="_blank">cluster data (1)</a></li>
       <li><a href="'.$jsonpath.'WritEMe_graphemic_db_cluster2_data.json.json" target="_blank">cluster data (2)</a></li>
+    </ul>
+    <p><b>2.</b> Other downloads:</p>
+    <ul>
+      <li><a href="https://github.com/MMaiocchi/WritEMe_Uruk_palaeography/tree/main/scripts" target="_blank">Scripts</a> for populating the database on the basis of input data.</li>
+      <li><a href="https://github.com/MMaiocchi/WritEMe_Uruk_palaeography/tree/main/images" target="_blank">Images</a> displayed on the database.</li>
     </ul>
   </body>
 </html>
@@ -1972,7 +2418,6 @@ close DOWNLOAD;
 print "... working on JSON files ...\n";
 chdir $path.'\\'.$jsonpath or die "Can't navigate to json folder, program terminated prematurely: $!";
 
-#$final_variations_hash{$token}{$final_rank}{$cluster}{$CDLI_num}++;
 my $json = JSON::MaybeXS->new(utf8 => 1, pretty => 1, sort_by => 1);
 open(JSON1, ">WritEMe_graphemic_db_transliteration_data.json") || die "Error creating the json output file!: $!\n\n";
 print JSON1 $json->encode(\%geo_hash);
@@ -1998,7 +2443,7 @@ close JSON4;
 
 
 
-print "Done!\n";
+
 close OUT;
 
 close WARNINGS;
@@ -2009,9 +2454,33 @@ sub commify {
     return scalar reverse $text;
 }
 
+print "\nThe following signs have possible issues (double check):\n" if (%graphemic_oddities);
 foreach my $sign (sort keys %graphemic_oddities) {
   print "$sign\n";
   foreach my $odd (sort keys %{$graphemic_oddities{$sign}}){
     print "\t$odd\n";
   }
+}
+
+print "Done!\n";
+
+
+sub sort_variants {
+  my $variant = shift;
+  my @v_parts = split /\s/, $variant;
+  foreach my $v (@v_parts) {
+    $v =~ s/~.+?$//; 
+  }
+  my $final_var = join ' ', @v_parts;
+  return $final_var
+}
+
+sub sort_numeric_safe {
+  my $num = shift;
+  my $final_num = 0;
+  if ($num =~ m/(\d+)/) {
+    $final_num = $1;
+  }
+
+  return $final_num
 }
